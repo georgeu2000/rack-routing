@@ -1,6 +1,6 @@
  Gem::Specification.new do |s|
   s.name        = 'rack-routes'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2015-02-23'
   s.summary     = 'Rack router for your Rack app.'
   s.description = 'Set up routes quickly and easily for a rack app.'
@@ -9,9 +9,9 @@
   s.files       = ['lib/rack/routes.rb', 'lib/rack/route.rb', 'lib/rack/router.rb']
   s.homepage    = 'http://rubygems.org/gems/rack-routes'
   s.license     = 'MIT'
-  s.add_development_dependency 'rspec', ['>= 3.2']
-  s.add_development_dependency 'rack', ['>= 1.6']
-  s.add_development_dependency 'rack-test', ['>= 0.6.2']
-  s.add_development_dependency 'guard', ['>= 2.12']
-  s.add_development_dependency 'guard-rspec', ['>= 4.5']
+  s.add_development_dependency 'rspec', ['3.2']
+  s.add_development_dependency 'rack', ['1.6']
+  s.add_development_dependency 'rack-test', ['0.6.2']
+  s.add_development_dependency 'guard', ['2.12']
+  s.add_development_dependency 'guard-rspec', ['4.5']
 end
