@@ -2,7 +2,7 @@ require 'rack'
 require 'rspec'
 require 'rack/test'
  
-require './lib/rack/routes'
+require './lib/rack/routing'
 
 ROUTES_FILE = 'spec/config/routes.txt'
 ROUTES = Router.load_routes
