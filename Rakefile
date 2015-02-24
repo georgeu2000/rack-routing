@@ -1,6 +1,4 @@
-require './spec/spec_helper'
+require 'rspec/core/rake_task'
 
-desc 'Run Specs'
-task :run_specs do
-  RSpec::Core::RakeTask.new(:spec)
-end
+RSpec::Core::RakeTask.new('spec')
+
