@@ -1,0 +1,3 @@
+GET  /
+GET  /app/:id/show
+GET  /app/:id/edit

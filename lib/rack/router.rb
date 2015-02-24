@@ -7,7 +7,7 @@ class Router
 
       raise 'Invalid HTTP method' unless VALID_HTTP_METHODS.include?( http_method )
 
-      parts = [ http_method ] + env[ 'PATH_INFO' ].split( '/' ).reject( &:blank? )
+      parts = [ http_method ] + env[ 'PATH_INFO' ].split( '/' ).reject{| p | blank?( p )}
 
       matched_route = ROUTES.find do |route|
         route.match?( parts )
@@ -22,9 +22,9 @@ class Router
     end
 
     def load_routes
-      lines = File.read( 'config/routes.txt' )
+      lines = File.read( ROUTES_FILE )
                   .split( "\n"      )
-                  .reject( &:blank? )
+                  .reject{| l | blank?( l )}
 
       lines.map do |line|
         Route.new( line )

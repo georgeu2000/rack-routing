@@ -1,3 +1,5 @@
+require './spec/spec_helper'
+
 describe Route do
   describe '#match?' do
     describe 'success' do

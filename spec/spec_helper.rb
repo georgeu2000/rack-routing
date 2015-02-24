@@ -2,7 +2,10 @@ require 'rack'
 require 'rspec'
 require 'rack/test'
  
-require './lib/rack_routes'
+require './lib/rack/routes'
+
+ROUTES_FILE = 'spec/config/routes.txt'
+ROUTES = Router.load_routes
 
 RSpec.configure do |config|
   config.filter_run focus:true
@@ -15,6 +18,7 @@ RSpec.configure do |config|
     /\/lib\d*\/ruby\//,
     /bin\//,
     /gems/,
+    /rbenv/,
     /spec\/spec_helper\.rb/,
     /lib\/rspec\/(core|expectations|matchers|mocks)/
   ]

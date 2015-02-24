@@ -1,6 +1,6 @@
 class Route
   def initialize path
-    @my_parts = path.split( '/' ).reject( &:blank? ).map( &:strip )
+    @my_parts = path.split( '/' ).reject{| p | blank?( p )}.map( &:strip )
   end
 
   def match? parts

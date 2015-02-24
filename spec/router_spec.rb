@@ -1,3 +1,5 @@
+require './spec/spec_helper'
+
 describe Router do
   describe 'returns not_found' do
     let( :env ){{ 'REQUEST_METHOD' => 'GET'       ,
@@ -64,8 +66,8 @@ describe Router do
   end
 
   describe 'skip blank lines in routes.txt' do
-    let( :lines ){ File.read( 'config/routes.txt' ).split( "\n" )}
-    let( :blank_lines ){ lines.select{| l | l.blank? }}
+    let( :lines ){ File.read( ROUTES_FILE ).split( "\n" )}
+    let( :blank_lines ){ lines.select{| l | blank?( l )}}
     let( :non_blank_lines ){ lines.count - blank_lines.count }
 
     specify do
