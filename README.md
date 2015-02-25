@@ -19,7 +19,7 @@ Create a `config/routes.txt` file to set up the routes.
 
 ### Example Request
 
-Request: `POST /foos, { bar:'baz' }`  
+Request: `POST /foos, { "bar":"baz" }`  
 Ruby:   
 
     def post_foos
@@ -28,3 +28,10 @@ Ruby:
     end
 
 An example app is available at [Rack Routing Demo](https://github.com/iAmPlus/rack-routing-demo).
+
+### To run specs
+    rspec
+
+or
+
+    guard
