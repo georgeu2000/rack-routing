@@ -5,7 +5,7 @@ require 'rack/test'
 require './lib/rack/routing'
 
 ROUTES_FILE = 'spec/config/routes.txt'
-ROUTES = Router.load_routes
+ROUTES = Rack::Routing::Router.load_routes
 
 RSpec.configure do |config|
   config.filter_run focus:true
@@ -17,7 +17,6 @@ RSpec.configure do |config|
   config.backtrace_exclusion_patterns = [
     /\/lib\d*\/ruby\//,
     /bin\//,
-    /gems/,
     /rbenv/,
     /spec\/spec_helper\.rb/,
     /lib\/rspec\/(core|expectations|matchers|mocks)/

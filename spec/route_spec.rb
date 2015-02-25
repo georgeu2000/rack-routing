@@ -1,9 +1,11 @@
 require './spec/spec_helper'
 
-describe Route do
+describe Rack::Routing::Route do
+  let( :subject ){ Rack::Routing::Route }
+  
   describe '#match?' do
     describe 'success' do
-      let( :route ){   Route.new( 'GET /foo/bar' )}
+      let( :route ){   subject.new( 'GET /foo/bar' )}
       let( :parts ){[ 'GET', 'foo', 'bar' ]}
 
       specify do
@@ -12,7 +14,7 @@ describe Route do
     end
 
     context 'when method is a symbol' do
-      let( :route ){   Route.new( 'GET /foo/bar' )}
+      let( :route ){   subject.new( 'GET /foo/bar' )}
       let( :parts ){[ :GET, 'foo', 'bar' ]}
 
       specify do
@@ -21,7 +23,7 @@ describe Route do
     end
 
     context 'when param in middle'  do
-      let( :route ){   Route.new( 'GET /foo/:id/bar' )}
+      let( :route ){   subject.new( 'GET /foo/:id/bar' )}
       let( :parts ){[ 'GET', 'foo', '123', 'bar' ]}
 
       specify do
@@ -30,7 +32,7 @@ describe Route do
     end
 
     context 'when param at the end' do
-      let( :route ){   Route.new( 'GET /foo/bar/:id' )}
+      let( :route ){   subject.new( 'GET /foo/bar/:id' )}
       let( :parts ){[ 'GET', 'foo', 'bar', '123' ]}
 
       specify do
@@ -39,7 +41,7 @@ describe Route do
     end
 
     context 'when method does not match' do
-      let( :route ){   Route.new( 'GET /foo/bar/:id' )}
+      let( :route ){   subject.new( 'GET /foo/bar/:id' )}
       let( :parts ){[ 'POST', 'foo', 'bar', '123' ]}
 
       specify do
@@ -48,7 +50,7 @@ describe Route do
     end
 
     context 'when parts do not match' do
-      let( :route ){   Route.new( 'GET /foo/bar/:id' )}
+      let( :route ){   subject.new( 'GET /foo/bar/:id' )}
       let( :parts ){[ 'GET', 'foo', 'qux', '123' ]}
 
       specify do
