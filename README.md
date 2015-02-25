@@ -1,6 +1,8 @@
 ## Rack Routing
 ----
-This gem maps URL routes to Ruby methods.
+Map URL routes to Ruby methods.
+
+An example app is available at [Rack Routing Demo](https://github.com/iAmPlus/rack-routing-demo).
 
 ### Installation
 Command line:  
@@ -8,6 +10,9 @@ Command line:
 
 Or add to your Gemfile:  
 `gem rack-routing`
+
+Require the rack-routing file in an initializer:  
+`require rack/routing`
 
 ### Example Routes
 
@@ -26,8 +31,6 @@ Ruby:
       Foo.create @params
       Rack::Response.new( 'Foo was created', 200 )
     end
-
-An example app is available at [Rack Routing Demo](https://github.com/iAmPlus/rack-routing-demo).
 
 ### To run specs
     rspec
