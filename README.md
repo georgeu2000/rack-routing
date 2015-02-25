@@ -2,16 +2,22 @@
 ----
 This gem maps URL routes to Ruby methods.
 
+### Installation
+Command line:
+`gem install rack-routing`
 
-### Examples:
+Or add to your Gemfile:
+`gem rack-routing`
+
+### Example Routes
 
 1. `GET /` => `get_root`
 1. `GET /foos/:id` => `get_foo` (with `@url_params`)
 1. `POST /foos` => `post_foos`
 
-Create a config/routes.txt file to set up the routes.
+Edit the `config/routes.txt` file to set up the routes.
 
-### Example:
+### Example Request
 
 Request: `POST /foos, { bar:'baz' }`  
 Ruby:   
