@@ -9,7 +9,7 @@ This gem maps URL routes to Ruby methods.
 1. `GET /foos/:id` => `get_foo` (with `@url_params`)
 1. `POST /foos` => `post_foos`
 
-Edit the config/routes.txt file to set up the routes.
+Create a config/routes.txt file to set up the routes.
 
 ### Example:
 
