@@ -23,6 +23,16 @@ describe Rack::Routing::Router do
     end
   end
 
+  describe 'GET /' do
+    let( :env ){{ 'REQUEST_METHOD' => 'GET' ,
+                  'PATH_INFO'      => '/'  }}
+
+    specify do
+      expect( router[ :method ]).to eq :get_root
+      expect( router[ :params ]).to eq Hash.new
+    end
+  end
+
   describe 'GET /apps' do
   end
 
@@ -46,13 +56,13 @@ describe Rack::Routing::Router do
     end
   end
 
-  describe 'GET /' do
-    let( :env ){{ 'REQUEST_METHOD' => 'GET' ,
-                  'PATH_INFO'      => '/'  }}
+  describe 'GET /js/:file' do
+    let( :env ){{ 'REQUEST_METHOD' => 'GET'   ,
+                  'PATH_INFO' => '/js/jquery.js' }}
 
     specify do
-      expect( router[ :method ]).to eq :get_root
-      expect( router[ :params ]).to eq Hash.new
+      expect( router[ :method ]).to eq :get_js
+      expect( router[ :params ][ :file ]).to eq 'jquery.js'
     end
   end
 
