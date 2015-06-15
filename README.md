@@ -41,7 +41,7 @@ The Ruby request handler might look like:
 
 Here is a second example request:
 
-    `POST /foos, { "bar":"baz" }`  
+     POST /foos, { "bar":"baz" }
 
 Since this request uses body params, the `@params` is set to `{ baz: 'bar' }`
 
