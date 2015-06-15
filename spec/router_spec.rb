@@ -98,7 +98,8 @@ describe Rack::Routing::Router do
   describe 'skip blank lines in routes.txt' do
     let( :lines ){ File.read( ROUTES_FILE ).split( "\n" )}
     let( :blank_lines ){ lines.select{| l | Rack::Routing::String.blank?( l )}}
-    let( :non_blank_lines ){ lines.count - blank_lines.count }
+    let( :comment_lines ){ lines.select{| l | l.match /\A\s*#/ }}
+    let( :non_blank_lines ){ lines.count - blank_lines.count - comment_lines.count }
 
     specify do
       expect( Rack::Routing::Router.load_routes.count ).to eq non_blank_lines
@@ -106,6 +107,13 @@ describe Rack::Routing::Router do
   end
 
   describe 'skip # comment lines in routes.txt' do
-    specify
+    let( :lines ){ File.read( ROUTES_FILE ).split( "\n" )}
+    let( :blank_lines ){ lines.select{| l | Rack::Routing::String.blank?( l )}}
+    let( :comment_lines ){ lines.select{| l | l.match /\A\s*#/ }}
+    let( :valid_lines ){ lines.count - blank_lines.count - comment_lines.count }
+
+    specify do
+      expect( Rack::Routing::Router.load_routes.count ).to eq valid_lines
+    end
   end
 end

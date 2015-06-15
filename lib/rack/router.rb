@@ -27,6 +27,7 @@ module Rack
           lines = ::File.read( ROUTES_FILE )
                       .split( "\n"      )
                       .reject{| l | String.blank?( l )}
+                      .reject{| l | l.match /\A\s*#/ }
 
           lines.map do |line|
             Route.new( line )
