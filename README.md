@@ -22,14 +22,34 @@ Require the rack-routing file in an initializer:
 
 Create a `config/routes.txt` file to set up the routes.
 
-### Example Request
+### Example Requests
 
-Request: `POST /foos, { "bar":"baz" }`  
-Ruby:   
+Request: `POST /foos/bar`  
+
+routes.txt: `POST /foos/:value`
+
+The `@url_params` is set to `{ value: 'bar' }`
+
+The Ruby request handler might look like:   
+
+    def post_foos
+      Foo.create @url_params
+      Rack::Response.new 'Foo was created.', 200
+    end
+
+---
+
+Here is a second example request:
+
+    `POST /foos, { "bar":"baz" }`  
+
+Since this request uses body params, the `@params` is set to `{ baz: 'bar' }`
+
+The Ruby request handler might look like:   
 
     def post_foos
       Foo.create @params
-      Rack::Response.new( 'Foo was created', 200 )
+      Rack::Response.new 'Foo was created.', 200
     end
 
 ### To run specs
