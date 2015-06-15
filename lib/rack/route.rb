@@ -9,7 +9,8 @@ module Rack
         return false unless parts.count == @my_parts.count
         
         indexes = ( 0..@my_parts.count - 1 ).to_a
-        indexes.delete param_index
+
+        param_indexes.each{| i | indexes.delete i }
 
         indexes.all? do |i|
           parts[ i ].to_s == @my_parts[ i ]
@@ -17,9 +18,11 @@ module Rack
       end
 
       def params_for parts
-        return {} unless param_index
+        return {} unless param_indexes
 
-        { @my_parts[ param_index ].sub( /\A:/, '' ).to_sym => parts[ param_index ]}
+        arr = param_indexes.map{| i | [ @my_parts[ i ].sub( /\A:/, '' ).to_sym, parts[ i ]]}
+        
+        arr.to_h
       end
 
       def routing_method
@@ -28,8 +31,8 @@ module Rack
         @my_parts.reject{ |p| p[ 0 ] == ':' }.map( &:downcase ).join( '_' ).to_sym
       end
 
-      def param_index
-        @my_parts.index{ |p| p[ 0 ] == ':' }
+      def param_indexes
+        @my_parts.map.with_index{ | p,i | i if p[ 0 ] == ':' }.compact
       end
 
       def to_s

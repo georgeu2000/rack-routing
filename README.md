@@ -37,4 +37,4 @@ Ruby:
 
 or
 
-    guard
+    bundle exec guard

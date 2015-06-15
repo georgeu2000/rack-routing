@@ -2,3 +2,5 @@ GET  /
 GET  /app/:id/show
 GET  /app/:id/edit
 GET  /js/:file
+
+POST /apps/:computer/names/:software

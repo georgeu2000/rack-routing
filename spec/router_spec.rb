@@ -33,9 +33,6 @@ describe Rack::Routing::Router do
     end
   end
 
-  describe 'GET /apps' do
-  end
-
   describe 'GET /app/:id/show' do
     let( :env ){{ 'REQUEST_METHOD' => 'GET'   ,
                   'PATH_INFO' => '/app/123/show' }}
@@ -63,6 +60,17 @@ describe Rack::Routing::Router do
     specify do
       expect( router[ :method ]).to eq :get_js
       expect( router[ :params ][ :file ]).to eq 'jquery.js'
+    end
+  end
+
+  describe 'POST with two params: /apps/mac/names/sublime' do
+    let( :env ){{ 'REQUEST_METHOD' => 'POST',
+                  'PATH_INFO'      => '/apps/mac/names/sublime' }}
+
+    specify do
+      expect( router[ :method ]).to eq :post_apps_names
+      expect( router[ :params ][ :computer ]).to eq 'mac'
+      expect( router[ :params ][ :software ]).to eq 'sublime'
     end
   end
 
