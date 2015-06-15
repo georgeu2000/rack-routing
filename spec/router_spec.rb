@@ -63,6 +63,16 @@ describe Rack::Routing::Router do
     end
   end
 
+  describe 'GET /url-with-dashes/:value converts to underbars in method name' do
+    let( :env ){{ 'REQUEST_METHOD' => 'GET'   ,
+                  'PATH_INFO'      => '/url-with-dashes/123' }}
+
+    specify do
+      expect( router[ :method ]).to eq :get_url_with_dashes
+      expect( router[ :params ][ :value ]).to eq '123'
+    end
+  end
+
   describe 'POST with two params: /apps/mac/names/sublime' do
     let( :env ){{ 'REQUEST_METHOD' => 'POST',
                   'PATH_INFO'      => '/apps/mac/names/sublime' }}
@@ -93,5 +103,9 @@ describe Rack::Routing::Router do
     specify do
       expect( Rack::Routing::Router.load_routes.count ).to eq non_blank_lines
     end
+  end
+
+  describe 'skip # comment lines in routes.txt' do
+    specify
   end
 end

@@ -28,7 +28,11 @@ module Rack
       def routing_method
         return "#{ @my_parts[ 0 ].downcase }_root".to_sym if @my_parts.count == 1
 
-        @my_parts.reject{ |p| p[ 0 ] == ':' }.map( &:downcase ).join( '_' ).to_sym
+        @my_parts.reject{ |p| p[ 0 ] == ':' }
+                 .map( &:downcase )
+                 .map{| p | p.gsub( '-', '_' )}
+                 .join( '_' )
+                 .to_sym
       end
 
       def param_indexes
