@@ -3,6 +3,12 @@ GET  /app/:id/show
 GET  /app/:id/edit
 GET  /js/:file
 
+GET /path
+POST /path
+PUT /path
+DELETE /path
+OPTIONS /path
+
 POST /apps/:computer/names/:software
 
 GET /url-with-dashes/:value

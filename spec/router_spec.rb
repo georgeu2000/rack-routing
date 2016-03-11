@@ -1,7 +1,7 @@
 require './spec/spec_helper'
 
 describe Rack::Routing::Router do
-  let( :router ){ Rack::Routing::Router.for( env )}
+  let( :router ){ Rack::Routing::Router.for env }
 
   describe 'returns not_found' do
     let( :env ){{ 'REQUEST_METHOD' => 'GET'       ,
@@ -13,13 +13,45 @@ describe Rack::Routing::Router do
     end
   end
 
-  describe 'only matches GET, POST, PUT and DELETE' do
-    context 'when FOO' do
-      let( :env ){{ 'REQUEST_METHOD' => 'FOO'  ,
-                    'PATH_INFO' => '/my/success' }}
-      specify do
-        expect{ router }.to raise_error 'Invalid HTTP method'
-      end
+  describe 'only matches GET, POST, PUT, DELETE, OPTIONS' do
+    let( :env ){{ 'PATH_INFO' => '/path' }}
+    
+    specify 'GET' do
+      env.merge!( 'REQUEST_METHOD' => 'GET' )
+
+      expect( router[ :method ]).to eq :get_path
+    end
+
+    specify 'POST' do
+      env.merge!( 'REQUEST_METHOD' => 'POST' )
+      
+      expect( router[ :method ]).to eq :post_path
+    end
+
+    specify 'PUT' do
+      env.merge!( 'REQUEST_METHOD' => 'PUT' )
+      
+      expect( router[ :method ]).to eq :put_path
+    end
+
+    specify 'DELETE' do
+      env.merge!( 'REQUEST_METHOD' => 'DELETE' )
+      
+      expect( router[ :method ]).to eq :delete_path
+    end
+
+    specify 'OPTIONS' do
+      env.merge!( 'REQUEST_METHOD' => 'OPTIONS' )
+      
+      expect( router[ :method ]).to eq :options_path
+    end
+  end
+
+  describe 'does not match invalid method' do
+    let( :env ){{ 'REQUEST_METHOD' => 'FOO'       ,
+                  'PATH_INFO' => '/no/such/path' }}
+    specify do
+      expect{ router }.to raise_error 'Invalid HTTP method'
     end
   end
 

@@ -1,7 +1,7 @@
 module Rack
   module Routing
     class Router
-      VALID_HTTP_METHODS = [ :GET, :POST, :PUT, :DELETE ]
+      VALID_HTTP_METHODS = [ :GET, :POST, :PUT, :DELETE, :OPTIONS ]
 
       class << self
         def for env
