@@ -1,6 +1,6 @@
  Gem::Specification.new do |s|
   s.name        = 'rack-routing'
-  s.version     = '0.0.8'
+  s.version     = '0.0.10'
   s.date        = '2015-06-15'
   s.summary     = 'Rack router for your Rack app.'
   s.description = 'Set up routes quickly and easily for a rack app.'
