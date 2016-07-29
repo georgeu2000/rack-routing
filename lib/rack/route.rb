@@ -7,6 +7,11 @@ module Rack
 
       def match? parts
         return false unless parts.count == @my_parts.count
+
+        # HEAD request matches #GET route
+        if parts.first.to_s.upcase.to_sym == :HEAD
+          parts[ 0 ] = :GET
+        end
         
         indexes = ( 0..@my_parts.count - 1 ).to_a
 

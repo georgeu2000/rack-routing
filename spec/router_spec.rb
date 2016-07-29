@@ -45,9 +45,15 @@ describe Rack::Routing::Router do
       
       expect( router[ :method ]).to eq :options_path
     end
+
+    specify 'HEAD routes to GET' do
+      env.merge!( 'REQUEST_METHOD' => 'HEAD' )
+      
+      expect( router[ :method ]).to eq :get_path
+    end
   end
 
-  describe 'does not match invalid method' do
+  describe 'does not match valid method' do
     let( :env ){{ 'REQUEST_METHOD' => 'FOO'       ,
                   'PATH_INFO' => '/no/such/path' }}
     specify do
