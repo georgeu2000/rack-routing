@@ -53,7 +53,7 @@ describe Rack::Routing::Router do
     end
   end
 
-  describe 'does not match valid method' do
+  describe 'does not match invalid method' do
     let( :env ){{ 'REQUEST_METHOD' => 'FOO'       ,
                   'PATH_INFO' => '/no/such/path' }}
     specify do
